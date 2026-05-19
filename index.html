@@ -19,7 +19,7 @@
         <div class="hero">
             <h1>تعلم الرياضيات بمتعة وسهولة</h1>
             <p>نتبع منهج وزارة التربية والتعليم في دولة الإمارات لضمان أفضل النتائج</p>
-            <a href="https://wa.me/971568245144" id="whatsapp-link" class="cta-button">احجز حصتك الآن</a>
+            <a href="https://wa.me/971568245144" id="whatsapp-link" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">احجز حصتك الآن</a>
         </div>
 		
 		<!-- العداد -->
@@ -52,14 +52,16 @@
     const scriptUrl = "https://script.google.com/macros/s/AKfycbyECrz9YUUSxXj4yxrz7MBtNyz3NkXVTVgj4vsx0IIsA4PRrZUPrq_wd3EdPBkb7Amu3Q/exec";
 
     // 2. تحديث العداد في السيرفر (جوجل شيت) عند الضغط على الزر
-    document.getElementById('whatsapp-link').addEventListener('click', (e) => {
-        // إرسال طلب في الخلفية لزيادة العداد دون تعطيل فتح الواتساب
-        fetch(`${scriptUrl}?action=click`)
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('counter-value').innerText = data.clicks;
-            })
-            .catch(error => console.error('Error updating counter:', error));
+    // تحديث العداد في جوجل شيت عند الضغط على الزر
+    document.getElementById('whatsapp-link').addEventListener('click', function(e) {
+    // إرسال الإشارة لجوجل شيت لزيادة العداد +1 في الخلفية
+    fetch(`${scriptUrl}?action=click`)
+        .then(response => response.json())
+        .then(data => {
+            // تحديث الرقم الظاهر في الصفحة فوراً بعد زيادة العداد
+            document.getElementById('counter-value').innerText = data.clicks;
+        })
+        .catch(error => console.error('Error updating counter:', error));
     });
 </script>
 
