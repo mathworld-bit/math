@@ -21,6 +21,11 @@
             <p>نتبع منهج وزارة التربية والتعليم في دولة الإمارات لضمان أفضل النتائج</p>
             <a href="https://wa.me/971568245144" id="whatsapp-link" class="cta-button">احجز حصتك الآن</a>
         </div>
+		
+		<!-- العداد -->
+        <div class="counter-box">
+            عدد النقرات الإجمالي: <span id="counter-value">جاري التحميل...</span>
+        </div>
     </header>
 
     <section id="about">
@@ -55,8 +60,8 @@
                 document.getElementById('counter-value').innerText = data.clicks;
             })
             .catch(error => console.error('Error updating counter:', error));
-      });
-     </script>
+    });
+</script>
 
     <footer id="contact">
         <p>تواصل معي عبر الواتساب للاستفسار عن المواعيد والأسعار</p>
