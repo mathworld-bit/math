@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دروس الرياضيات المتميزة - الأستاذ محمد فتحي</title>
+    <title>دروس الرياضيات المتميزة - الأستاذ حمزة</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo">الأستاذ محمد فتحي الخزرجي</div>
+            <div class="logo">الأستاذ حمزة</div>
             <ul>
                 <li><a href="#about">عن المعلم</a></li>
                 <li><a href="#classes">الصفوف الدراسية</a></li>
@@ -25,22 +25,38 @@
 
     <section id="about">
         <h2>عن المعلم</h2>
-        <p>معلم رياضيات بخبرة واسعة في تدريس الرياضيات بدولة الإمارات العربية المتحدة، متخصص في تبسيط المفاهيم المعقدة وربطها بالتطبيقات العملية والحياتية.</p>
+        <p>معلم رياضيات بخبرة واسعة في تدريس الصفين الخامس والتاسع، متخصص في تبسيط المفاهيم المعقدة وربطها بالتطبيقات العملية والحياتية.</p>
     </section>
 
     <section id="classes">
         <h2>الصفوف الدراسية</h2>
         <div class="class-cards">
             <div class="card">
-                <h3>الصف السابع</h3>
-                <p>شرح معمق للجبر والهندسة والتحضير المكثف للاختبارات النهائية وفق معايير الوزارة.</p>
+                <h3>الصف الخامس</h3>
+                <p>تأسيس قوي في العمليات الحسابية والكسور والهندسة وفق معايير الوزارة.</p>
             </div>
             <div class="card">
-                <h3>الصف الثامن</h3>
+                <h3>الصف التاسع</h3>
                 <p>شرح معمق للجبر والهندسة والتحضير المكثف للاختبارات النهائية.</p>
             </div>
         </div>
     </section>
+	
+	<script>
+    // ضع هنا رابط Web App URL الذي نسخته من Google Apps Script
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbxvfpTGYh3kTZfPB562Xpxe5g__DjuRfJP4KhcieTTf9aPdpR2DgsFjLk365tEOwvJshg/exec";
+
+    // 2. تحديث العداد في السيرفر (جوجل شيت) عند الضغط على الزر
+    document.getElementById('whatsapp-link').addEventListener('click', (e) => {
+        // إرسال طلب في الخلفية لزيادة العداد دون تعطيل فتح الواتساب
+        fetch(`${scriptUrl}?action=click`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('counter-value').innerText = data.clicks;
+            })
+            .catch(error => console.error('Error updating counter:', error));
+    });
+</script>
 
     <footer id="contact">
         <p>تواصل معي عبر الواتساب للاستفسار عن المواعيد والأسعار</p>
