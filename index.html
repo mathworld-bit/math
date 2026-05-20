@@ -1,73 +1,45 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دروس الرياضيات المتميزة - الأستاذ حمزة</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">الأستاذ حمزة</div>
-            <ul>
-                <li><a href="#about">عن المعلم</a></li>
-                <li><a href="#classes">الصفوف الدراسية</a></li>
-                <li><a href="#contact">تواصل معي</a></li>
-            </ul>
-        </nav>
-        <div class="hero">
-            <h1>تعلم الرياضيات بمتعة وسهولة</h1>
-            <p>نتبع منهج وزارة التربية والتعليم في دولة الإمارات لضمان أفضل النتائج</p>
-            <a href="https://wa.me/971568245144" id="whatsapp-link" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">احجز حصتك الآن</a>
-        </div>
-		
-		<!-- العداد -->
-        <div class="counter-box">
-            عدد النقرات الإجمالي: <span id="counter-value">جاري التحميل...</span>
-        </div>
-    </header>
+function setRandomWhatsAppLink() {
+        const btn = document.getElementById('whatsapp-btn');
+        
+        // أرقام الهواتف
+        const myNumber = "971556595131";
+        const friendNumber = "971568245144";
+        
+        // 1. توليد 5 أرقام عشوائية (مثلاً بين 1 و 100)
+        let randomNumbers = [];
+        for (let i = 0; i < 5; i++) {
+            randomNumbers.push(Math.floor(Math.random() * 100) + 1);
+        }
 
-    <section id="about">
-        <h2>عن المعلم</h2>
-        <p>معلم رياضيات بخبرة واسعة في تدريس الصفين الخامس والتاسع، متخصص في تبسيط المفاهيم المعقدة وربطها بالتطبيقات العملية والحياتية.</p>
-    </section>
+        // 2. إيجاد مجموع الأرقام الخمسة
+        const sum = randomNumbers.reduce((acc, curr) => acc + curr, 0);
 
-    <section id="classes">
-        <h2>الصفوف الدراسية</h2>
-        <div class="class-cards">
-            <div class="card">
-                <h3>الصف الخامس</h3>
-                <p>تأسيس قوي في العمليات الحسابية والكسور والهندسة وفق معايير الوزارة.</p>
-            </div>
-            <div class="card">
-                <h3>الصف التاسع</h3>
-                <p>شرح معمق للجبر والهندسة والتحضير المكثف للاختبارات النهائية.</p>
-            </div>
-        </div>
-    </section>
-	
-	<script>
-    // ضع هنا رابط Web App URL الذي نسخته من Google Apps Script
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbyECrz9YUUSxXj4yxrz7MBtNyz3NkXVTVgj4vsx0IIsA4PRrZUPrq_wd3EdPBkb7Amu3Q/exec";
+        // 3. التحقق من الناتج (زوجي أم فردي) وتحديد الرقم والاسم
+        let finalNumber;
+        let tutorName;
 
-    // 2. تحديث العداد في السيرفر (جوجل شيت) عند الضغط على الزر
-    // تحديث العداد في جوجل شيت عند الضغط على الزر
-    document.getElementById('whatsapp-link').addEventListener('click', function(e) {
-    // إرسال الإشارة لجوجل شيت لزيادة العداد +1 في الخلفية
-    fetch(`${scriptUrl}?action=click`)
-        .then(response => response.json())
-        .then(data => {
-            // تحديث الرقم الظاهر في الصفحة فوراً بعد زيادة العداد
-            document.getElementById('counter-value').innerText = data.clicks;
-        })
-        .catch(error => console.error('Error updating counter:', error));
-    });
-</script>
+        if (sum % 2 === 0) {
+            // الناتج زوجي (Even) -> رقمك أنت
+            finalNumber = myNumber;
+            tutorName = "حمزة";
+        } else {
+            // الناتج فردي (Odd) -> رقم صديقك
+            finalNumber = friendNumber;
+            tutorName = "أحمد"; // يمكنك تغيير الاسم لاسم صديقك الحقيقي
+        }
 
-    <footer id="contact">
-        <p>تواصل معي عبر الواتساب للاستفسار عن المواعيد والأسعار</p>
-        <p>© 2026 جميع الحقوق محفوظة</p>
-    </footer>
-</body>
-</html>
+        // الرسالة المجهزة مسبقاً
+        const message = encodeURIComponent(`مرحباً أستاذ ${tutorName}، أود الاستفسار عن دروس الرياضيات.`);
+
+        // 4. تحديث الرابط والنص في الصفحة
+        btn.href = `https://wa.me/${finalNumber}?text=${message}`;
+        btn.innerText = `تواصل مع الأستاذ ${tutorName}`;
+        
+        // (اختياري للتدقيق) طباعة الأرقام والمجموع في الـ Console
+        console.log("الأرقام العشوائية:", randomNumbers);
+        console.log("المجموع:", sum);
+        console.log("النتيجة:", sum % 2 === 0 ? "زوجي (رقمك)" : "فردي (صديقك)");
+    }
+
+    // تشغيل الدالة عند تحميل الصفحة
+    window.onload = setRandomWhatsAppLink;
